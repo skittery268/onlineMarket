@@ -31,13 +31,22 @@ app.use("/api/whishlist", whishListRouter);
 app.use("/api/admin", adminRouter);
 
 const PORT = process.env.PORT || 3000;
+const MONGO_URI = process.env.MONGO_URI;
 
-mongoose.connect(process.env.MONGO_URI)
+if (!MONGO_URI) {
+    console.error("FATAL: MONGO_URI environment variable is not set.");
+    process.exit(1);
+}
+
+app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`);
+});
+
+mongoose
+    .connect(MONGO_URI)
     .then(() => {
-        console.log("connection to the database was successful");
-
-        app.listen(PORT, () => {
-            console.log("Server Started!");
-        })
+        console.log("Connection to the database was successful");
     })
-    .catch((err) => console.log(err))
+    .catch((err) => {
+        console.error("Database connection error:", err);
+    });
