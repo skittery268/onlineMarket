@@ -16,7 +16,7 @@ const Order = ({ setOpenOrder }) => {
             <div className="flex w-380 h-320 justify-center absolute items-center flex-col gap-5 bg-black opacity-50"></div>
 
             <div className="overflow-y-auto bg-white min-h-130 max-h-160 w-140 fixed top-20 left-110 flex items-center flex-col rounded-2xl opacity-100">
-                <img src="../icons/order.svg" className="mr-105 mt-10" />
+                <img src="/icons/order.svg" className="mr-105 mt-10" />
                 <h1 className="text-4xl font-bold mr-45 mt-5">Order Confirmed</h1>
                 <p className="text-[#B3928F] mr-64 mt-2">We hope you enjoy your food!</p>
                 <div className="bg-[#FCF9F7] w-115 mt-8 rounded-2xl">

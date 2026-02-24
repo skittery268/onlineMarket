@@ -21,7 +21,7 @@ const Profile = () => {
     return (
         <div className="max-w-md mx-auto mt-10 bg-white shadow-lg rounded-lg overflow-hidden">
             <div className="p-6 bg-linear-to-r from-blue-400 to-indigo-500 text-white text-center">
-                <img src={!user.image ? './icons/user2.png' : user.image} className="w-24 h-24 rounded-full object-cover mx-auto border-4 border-white" />
+                <img src={!user.image ? '/icons/user2.png' : user.image} className="w-24 h-24 rounded-full object-cover mx-auto border-4 border-white" />
                 <h2 className="mt-4 text-2xl font-semibold">{user.name}</h2>
                 <p className="text-sm opacity-90">{user.email}</p>
                 {

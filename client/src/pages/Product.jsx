@@ -96,7 +96,7 @@ const Product = () => {
                         </form>
 
                         <div className={`absolute border cursor-pointer border-gray-300 ${inWhishList ? "bg-[#21B3F1]" : "hover:border-white hover:bg-[#21B3F1]"} rounded-full right-0 bottom-0 h-10 w-10`} onClick={addWhishList}>
-                            <img src="../icons/heartBlack.png" className={`p-2 duration-300 ${inWhishList ? "invert" : "hover:invert"}`} />
+                            <img src="/icons/heartBlack.png" className={`p-2 duration-300 ${inWhishList ? "invert" : "hover:invert"}`} />
                         </div>
                     </div>
 
@@ -115,7 +115,7 @@ const Product = () => {
                         </div>
 
                         {
-                            open ? <img src="../icons/minus.png" className="cursor-pointer h-3" onClick={() => setOpen(false)} /> : <img src="../icons/plus.png" className="cursor-pointer h-3" onClick={() => setOpen(true)} />
+                            open ? <img src="/icons/minus.png" className="cursor-pointer h-3" onClick={() => setOpen(false)} /> : <img src="/icons/plus.png" className="cursor-pointer h-3" onClick={() => setOpen(true)} />
                         }
                     </div>
                 </div>

@@ -17,7 +17,7 @@ const Nav = () => {
                     { user && <li><Link to={"/shop"} className="text-[17px] hover:text-[#e5e5e5] transition">Shop</Link></li> } 
                 </ul>
                 
-                <img src={user?.role === "admin" ? "./icons/management.png" : "./icons/settings.png"} onClick={() => setOpen(!open)} className="absolute right-10 h-5 top-6 cursor-pointer" />
+                <img src={user?.role === "admin" ? "/icons/management.png" : "/icons/settings.png"} onClick={() => setOpen(!open)} className="absolute right-10 h-5 top-6 cursor-pointer" />
 
                 {
                     open && (
