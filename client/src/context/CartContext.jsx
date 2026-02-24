@@ -8,7 +8,7 @@ const CartContext = createContext();
 // eslint-disable-next-line react-refresh/only-export-components
 export const useCart = () => useContext(CartContext);
 
-const api_url = "http://localhost:3000/api/cart";
+const api_url = "https://onlinemarket-o6s5.onrender.com/api/cart";
 
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
@@ -16,7 +16,7 @@ export const CartProvider = ({ children }) => {
 
     const getCart = async () => {
         try {
-            const res = await fetch(`http://localhost:3000/api/cart/${user._id}`);
+            const res = await fetch(`${api_url}/${user._id}`);
 
             const data = await res.json();
 

@@ -7,7 +7,7 @@ const AuthContext = createContext();
 // eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => useContext(AuthContext);
 
-const api_url = "http://localhost:3000/api/users";
+const api_url = "https://onlinemarket-o6s5.onrender.com/api/users";
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);

@@ -6,7 +6,7 @@ const WhishListContext = createContext();
 // eslint-disable-next-line react-refresh/only-export-components
 export const useWhishList = () => useContext(WhishListContext);
 
-const api_url = "http://localhost:3000/api/whishlist"
+const api_url = "https://onlinemarket-o6s5.onrender.com/api/whishlist"
 
 export const WhishListProvider = ({ children }) => {
     const [whishList, setWhishList] = useState([]);

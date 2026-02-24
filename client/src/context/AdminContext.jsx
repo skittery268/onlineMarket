@@ -6,7 +6,7 @@ const AdminContext = createContext();
 // eslint-disable-next-line react-refresh/only-export-components
 export const useAdmin = () => useContext(AdminContext);
 
-const api_url = "http://localhost:3000/api/admin";
+const api_url = "https://onlinemarket-o6s5.onrender.com/api/admin";
 
 export const AdminProvider = ({ children }) => {
     const [users, setUsers] = useState([]);

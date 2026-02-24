@@ -5,7 +5,7 @@ const CategoriesContext = createContext();
 // eslint-disable-next-line react-refresh/only-export-components
 export const useCategories = () => useContext(CategoriesContext);
 
-const api_url = "http://localhost:3000/api/categories"
+const api_url = "https://onlinemarket-o6s5.onrender.com/api/categories"
 
 export const CategoriesProvider = ({ children }) => {
     const [categories, setCategories] = useState([]);

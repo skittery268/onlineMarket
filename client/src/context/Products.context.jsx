@@ -6,7 +6,7 @@ const ProductsContext = createContext();
 // eslint-disable-next-line react-refresh/only-export-components
 export const useProducts = () => useContext(ProductsContext);
 
-const api_url = "http://localhost:3000/api/products"
+const api_url = "https://onlinemarket-o6s5.onrender.com/api/products"
 
 export const ProductsProvider = ({ children }) => {
     const [products, setProducts] = useState([]);
