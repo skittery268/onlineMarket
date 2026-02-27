@@ -8,7 +8,7 @@ export const useIcons = () => useContext(IconsContext);
 const api_url = "https://onlinemarket-o6s5.onrender.com/api/icons";
 
 export const IconsProvider = ({ children }) => {
-    const [icons, setIcons] = useState([]);
+    const [icons, setIcons] = useState({});
 
     const getAllIcons = async () => {
         try {
@@ -16,14 +16,14 @@ export const IconsProvider = ({ children }) => {
 
             const data = await res.json();
 
-            setIcons(data);
+            setIcons(data[0]);
         } catch (err) {
             console.log(err);
         }
     }
 
     useEffect(() => {
-        if (icons.length === 0) getAllIcons();
+        if (Object.keys(icons).length === 0) getAllIcons();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
