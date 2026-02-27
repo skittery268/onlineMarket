@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { createContext } from "react";
 import { useAuth } from "./AuthContext";
+import { useCategories } from "./CategoriesContext";
+import { useProducts } from "./ProductsContext";
 
 const CartContext = createContext();
 
@@ -13,6 +15,8 @@ const api_url = "https://onlinemarket-o6s5.onrender.com/api/cart";
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
     const { loading, user } = useAuth();
+    const { getCategories } = useCategories();
+    const { getAllProducts } = useProducts();
 
     const getCart = async () => {
         try {
@@ -87,6 +91,8 @@ export const CartProvider = ({ children }) => {
 
             setCart(data);
             localStorage.removeItem("product");
+            getCategories();
+            getAllProducts();
         } catch (err) {
             console.log(err);
         }
