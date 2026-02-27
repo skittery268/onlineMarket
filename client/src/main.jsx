@@ -13,9 +13,9 @@ import { IconsProvider } from './context/IconsContext.jsx';
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <AuthProvider>
-      <CartProvider>
-        <CategoriesProvider>
-          <ProductsProvider>
+      <CategoriesProvider>
+        <ProductsProvider>
+          <CartProvider>
             <WhishListProvider>
               <AdminProvider>
                 <IconsProvider>
@@ -23,9 +23,9 @@ createRoot(document.getElementById('root')).render(
                 </IconsProvider>
               </AdminProvider>
             </WhishListProvider>
-          </ProductsProvider>
-        </CategoriesProvider>
-      </CartProvider>
+          </CartProvider>
+        </ProductsProvider>
+      </CategoriesProvider>
     </AuthProvider>
   </BrowserRouter>
 )
