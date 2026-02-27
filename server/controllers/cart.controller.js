@@ -1,3 +1,4 @@
+const Category = require("../models/categories.model");
 const Product = require("../models/product.model");
 const User = require("../models/user.model");
 
@@ -69,10 +70,14 @@ const clearCart = async (req, res) => {
         const user = await User.findById(id);
 
         await Promise.all(
-            user.cart.map(p => {
+            user.cart.map(async p => {
                 const result = p.productCount - p.quantity;
 
                 if (result <= 0) {
+                    await Category.updateOne(
+                        { categori: p.category },
+                        { $inc: { productCount: -1 } }
+                    );
                     return Product.deleteOne({ _id: p._id });
                 } else {
                     return Product.updateOne(
