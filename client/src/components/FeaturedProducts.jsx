@@ -1,5 +1,5 @@
-import { useAuth } from "../context/Auth.context";
-import { useProducts } from "../context/Products.context";
+import { useAuth } from "../context/AuthContext";
+import { useProducts } from "../context/ProductsContext";
 import { Link } from "react-router";
 
 const FeaturedProducts = () => {

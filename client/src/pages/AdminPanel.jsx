@@ -1,7 +1,9 @@
 import { useAdmin } from "../context/AdminContext";
+import { useIcons } from "../context/IconsContext";
 
 const AdminPanel = () => {
     const { users, deleteUser, changeRole } = useAdmin();
+    const { icons } = useIcons();
 
     return (
         <>
@@ -22,7 +24,7 @@ const AdminPanel = () => {
                         users.map(user => (
                             <tr key={user._id}>
                                 <td className="border border-gray-300 px-4 py-2">{user._id}</td>
-                                <td className="border-b border-b-gray-300 flex justify-center items-center"><img src={user.image ? user.image : "/icons/user.png"} className="hover:shadow duration-300 h-10 w-10 border border-gray-300 m-3 rounded-full" /></td>
+                                <td className="border-b border-b-gray-300 flex justify-center items-center"><img src={user.image ? user.image : icons["user2.png"]} className="hover:shadow duration-300 h-10 w-10 border border-gray-300 m-3 rounded-full" /></td>
                                 <td className="border border-gray-300 pl-5 pr-5 text-center text-gray-400">{user.name}</td>
                                 <td className="border border-gray-300 pl-5 pr-5 text-center text-gray-400">{user.email}</td>
                                 <td className="border border-gray-300 ml-5 mr-5 text-center"><button onClick={() => changeRole(user._id, user.role === "admin" ? "user" : "admin")} className={`cursor-pointer ${user.role === "admin" ? "text-red-500" : "text-blue-500"}`}>{user.role}</button></td>

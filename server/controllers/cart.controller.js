@@ -70,10 +70,16 @@ const clearCart = async (req, res) => {
 
         await Promise.all(
             user.cart.map(p => {
-                return Product.updateOne(
-                    { _id: p._id },
-                    { $inc: { productCount: -p.quantity } }
-                )
+                const result = p.productCount - p.quantity;
+
+                if (result <= 0) {
+                    return Product.deleteOne({ _id: p._id });
+                } else {
+                    return Product.updateOne(
+                        { _id: p._id },
+                        { $inc: { productCount: -p.quantity } }
+                    )
+                }
             })
         )
 

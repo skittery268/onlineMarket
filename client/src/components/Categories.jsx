@@ -1,6 +1,6 @@
-import { useCategories } from "../context/Categories.context";
+import { useCategories } from "../context/CategoriesContext";
 import { Link } from "react-router";
-import { useAuth } from "../context/Auth.context";
+import { useAuth } from "../context/AuthContext";
 
 const Categories = () => {
     const { categories } = useCategories();

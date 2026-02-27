@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { useCategories } from "../context/Categories.context";
+import { useCategories } from "../context/CategoriesContext";
 
 const Shop = () => {
     const { categories } = useCategories();

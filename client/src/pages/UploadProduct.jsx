@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useCategories } from "../context/Categories.context";
-import { useProducts } from "../context/Products.context";
+import { useCategories } from "../context/CategoriesContext";
+import { useProducts } from "../context/ProductsContext";
 import { useForm } from "../hooks/useForm";
 
 const UploadProduct = () => {

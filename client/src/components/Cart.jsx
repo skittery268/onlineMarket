@@ -1,7 +1,9 @@
 import { useCart } from "../context/CartContext";
+import { useIcons } from "../context/IconsContext";
 
 const Cart = () => {
     const { cart, setCart, deleteFromCart, changeQuantity } = useCart();
+    const { icons } = useIcons();
 
     const handleSubmit = (e, id) => {
         e.preventDefault();
@@ -47,7 +49,7 @@ const Cart = () => {
                                                 <form onSubmit={(e) => handleSubmit(e, p._id)} className="border absolute bottom-7 left-13 border-gray-300 text-gray-400 rounded-[5px]">
                                                     <input type="number" name="quantity" min={"1"} max={p.productCount} placeholder={p.quantity} className="h-10 w-30 pl-3 outline-none pr-3" />
                                                 </form>
-                                                <button className="h-10 w-10 rounded-[5px] bg-red-600 flex justify-center items-center absolute bottom-7.5 hover:bg-red-700 cursor-pointer duration-300 left-45" onClick={() => deleteFromCart(p._id)}><img src="/icons/cross.png" className="h-4 w-4 bg-white rounded-full" /></button>
+                                                <button className="h-10 w-10 rounded-[5px] bg-red-600 flex justify-center items-center absolute bottom-7.5 hover:bg-red-700 cursor-pointer duration-300 left-45" onClick={() => deleteFromCart(p._id)}><img src={icons["cross.png"]} className="h-4 w-4 bg-white rounded-full" /></button>
                                             </td>
                                             <td className="border-l border-r border-l-gray-300 border-r-gray-300 text-center">${p.price}.00</td>
                                             <td className="text-center">${parseInt(p.price) * parseInt(p.quantity)}.00</td>

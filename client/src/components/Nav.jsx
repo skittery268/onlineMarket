@@ -1,9 +1,11 @@
 import { Link } from "react-router";
-import { useAuth } from "../context/Auth.context";
+import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
+import { useIcons } from "../context/IconsContext";
 
 const Nav = () => {
     const [open, setOpen] = useState(false);
+    const { icons } = useIcons();
 
     const { user, logout } = useAuth();
 
@@ -17,7 +19,7 @@ const Nav = () => {
                     { user && <li><Link to={"/shop"} className="text-[17px] hover:text-[#e5e5e5] transition">Shop</Link></li> } 
                 </ul>
                 
-                <img src={user?.role === "admin" ? "./icons/management.png" : "./icons/settings.png"} onClick={() => setOpen(!open)} className="absolute right-10 h-5 top-6 cursor-pointer" />
+                <img src={user?.role === "admin" ? icons["management.png"] : icons["settings.png"]} onClick={() => setOpen(!open)} className="absolute right-10 h-5 top-6 cursor-pointer" />
 
                 {
                     open && (
