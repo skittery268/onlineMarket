@@ -1,9 +1,9 @@
 import { Link } from "react-router";
 import { useAuth } from "../context/AuthContext";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { useIcons } from "../context/IconsContext";
 
-const Nav = () => {
+const Nav = memo(() => {
     const [open, setOpen] = useState(false);
     const { icons } = useIcons();
 
@@ -53,6 +53,6 @@ const Nav = () => {
             </nav>
         </header>
     )
-}
+})
 
 export default Nav;

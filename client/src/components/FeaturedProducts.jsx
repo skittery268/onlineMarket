@@ -1,8 +1,9 @@
+import { memo } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useProducts } from "../context/ProductsContext";
 import { Link } from "react-router";
 
-const FeaturedProducts = () => {
+const FeaturedProducts = memo(() => {
     const { products } = useProducts();
     const { user } = useAuth();
 
@@ -65,6 +66,6 @@ const FeaturedProducts = () => {
                 </div>
             </section>
     )
-}
+})
 
 export default FeaturedProducts;

@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useForm } from "../hooks/useForm";
 import { useIcons } from "../context/IconsContext";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 
 const Profile = () => {
     const { user, editInfo } = useAuth();
@@ -21,7 +23,7 @@ const Profile = () => {
     };
 
     return (
-        <div className="max-w-md mx-auto mt-10 bg-white shadow-lg rounded-lg overflow-hidden">
+        <motion.div initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8 }} className="max-w-md mx-auto mt-10 bg-white shadow-lg rounded-lg overflow-hidden">
             <div className="p-6 bg-linear-to-r from-blue-400 to-indigo-500 text-white text-center">
                 <img src={!user.image ? icons["user2.png"] : user.image} className="w-24 h-24 rounded-full object-cover mx-auto border-4 border-white" />
                 <h2 className="mt-4 text-2xl font-semibold">{user.name}</h2>
@@ -54,7 +56,7 @@ const Profile = () => {
                     </form>
                 )
             }
-        </div>
+        </motion.div>
     );
 }
 

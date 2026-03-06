@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { useAuth } from "./AuthContext";
 
 const AdminContext = createContext();
@@ -12,7 +12,7 @@ export const AdminProvider = ({ children }) => {
     const [users, setUsers] = useState([]);
     const { user, loading } = useAuth();
 
-    const getAllUsers = async () => {
+    const getAllUsers = useCallback(async () => {
         try {
             const res = await fetch(`${api_url}/users`, {
                 method: "POST",
@@ -28,12 +28,12 @@ export const AdminProvider = ({ children }) => {
         } catch (err) {
             console.log(err);
         }
-    }
+    }, [user])
 
     useEffect(() => {
         if (!loading) getAllUsers();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [loading])
+
+    }, [getAllUsers, loading])
 
     const deleteUser = async (id) => {
         try {

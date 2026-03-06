@@ -4,6 +4,8 @@ import Order from "../components/Order";
 import Cart from "../components/Cart";
 import SubTotal from "../components/SubTotal";
 import { useCart } from "../context/CartContext";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 
 const CartPage = () => {
     const [open, setOpen] = useState(false);
@@ -12,7 +14,7 @@ const CartPage = () => {
     const navigate = useNavigate();
 
     return (
-        <>
+        <motion.section initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8 }}>
             <h1 className="text-[30px] mt-17 ml-30">Shopping Cart</h1>
             <Cart />
 
@@ -38,7 +40,7 @@ const CartPage = () => {
             }
 
             { openOrder && <Order setOpenOrder={setOpenOrder} /> }
-        </>
+        </motion.section>
     )
 }
 

@@ -1,5 +1,6 @@
 const User = require("../models/user.model");
 
+// Function to get user whish list
 const getWhishList = async (req, res) => {
     try {
         const { id } = req.params;
@@ -12,6 +13,7 @@ const getWhishList = async (req, res) => {
     }
 }
 
+// Function to add new product in user whish list
 const addToWhishList = async (req, res) => {
     try {
         const { id } = req.params;
@@ -29,6 +31,7 @@ const addToWhishList = async (req, res) => {
     }
 }
 
+// Function to delete product from user whish list
 const deleteFromWhishList = async (req, res) => {
     try {
         const { id, productId } = req.params;

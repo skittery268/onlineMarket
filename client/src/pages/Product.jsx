@@ -6,6 +6,8 @@ import { useCart } from "../context/CartContext";
 import { useWhishList } from "../context/WhishList";
 import { useAuth } from "../context/AuthContext";
 import { useIcons } from "../context/IconsContext";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 
 const Product = () => {
     const [open, setOpen] = useState(false);
@@ -78,7 +80,7 @@ const Product = () => {
     }
 
     return (
-        <section>
+        <motion.section initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8 }}>
             <div className="h-160 mt-20 flex justify-center items-center">
                 <img src={product.img} alt={product.title} className="h-150 w-150 shadow rounded-[45px] mr-10 hover:shadow-lg duration-400" />
                 <div>
@@ -122,7 +124,7 @@ const Product = () => {
                     </div>
                 </div>
             </div>
-        </section>
+        </motion.section>
     );
 }
 

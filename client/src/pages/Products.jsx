@@ -5,6 +5,8 @@ import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
 import { useEffect, useState } from "react";
 import { useIcons } from "../context/IconsContext";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 
 const Products = () => {
     const { categories, getCategories } = useCategories();
@@ -46,7 +48,7 @@ const Products = () => {
     }, [products, categori])
 
     return (
-        <section className="flex justify-center  mt-30">
+        <motion.section initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8 }} className="flex justify-center  mt-30">
             <div className="flex justify-center items-start flex-col h-60 w-75 rounded-[10px] bg-[#F8F8F8]">
                 <h1 className="ml-5 mb-5 text-[22px]">Categories</h1>
                 {
@@ -72,7 +74,7 @@ const Products = () => {
                     })
                 }
             </div>
-        </section>
+        </motion.section>
     )
 }
 

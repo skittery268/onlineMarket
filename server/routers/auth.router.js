@@ -6,10 +6,10 @@ const authRouter = express.Router();
 // login user
 authRouter.post("/login", login);
 
-// register new user
+// Register new user
 authRouter.post("/register", register);
 
-// edit user info
+// Edit user info
 authRouter.post("/edit/:id", editInfo)
 
 module.exports = authRouter;

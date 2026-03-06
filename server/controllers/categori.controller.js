@@ -1,5 +1,6 @@
 const Category = require("../models/categories.model");
 
+// Function to get all categories
 const getCategories = async (req, res) => {
     try {
         const categories = await Category.find();

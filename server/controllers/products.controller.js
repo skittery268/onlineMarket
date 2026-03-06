@@ -1,7 +1,7 @@
 const Category = require("../models/categories.model");
 const Product = require("../models/product.model");
 
-// get all products
+// Function to get all products
 const getAllProducts = async (req, res) => {
     try {
         const products = await Product.find();
@@ -12,7 +12,7 @@ const getAllProducts = async (req, res) => {
     }
 }
 
-// create new product
+// Function to create new product
 const createProduct = async (req, res) => {
     try {
         const { title, description, img, category, price, productCount } = req.body;
@@ -33,7 +33,7 @@ const createProduct = async (req, res) => {
     }
 }
 
-// delete product
+// Function to delete product
 const deleteProduct = async (req, res) => {
     try {
         const id = req.params.id;
@@ -52,7 +52,7 @@ const deleteProduct = async (req, res) => {
     }
 }
 
-// edit product
+// Function to edit product
 const editProduct = async (req, res) => {
     const { title, description, img, category, price, productCount } = req.body;
     const id = parseInt(req.params.id);

@@ -2,6 +2,8 @@ import { useForm } from "../hooks/useForm";
 import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router";
 import { useIcons } from "../context/IconsContext";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 
 const Register = () => {
     const [formData, handleChange, handleSubmit, resetForm] = useForm({
@@ -19,7 +21,7 @@ const Register = () => {
     }
 
     return (
-        <section className="flex justify-center items-center h-[90vh]">
+        <motion.section initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8 }} className="flex justify-center items-center h-[90vh]">
             <form onSubmit={(e) => registerUser(e)} className="w-90 h-120 bg-[white] border rounded-[10px] relative border-[#cfcfcf]">
                 <h1 className="absolute left-6 top-4 text-2xl">Registration</h1>
                 <img src={icons["user.png"]} className="h-6 absolute top-25 left-5" />
@@ -33,7 +35,7 @@ const Register = () => {
                 <button type="submit" className="absolute top-85 bg-[#4A99F8] w-80 left-5 h-13 text-white rounded-[5px] cursor-pointer hover:bg-[#2688ff]">Register Now</button>
                 <p className="absolute top-101 text-[13px] left-19">Already have an account? <Link to={"/login"} className="text-blue-500">Login now</Link></p>
             </form>
-        </section>
+        </motion.section>
     )
 }
 

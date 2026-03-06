@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router";
 import { useWhishList } from "../context/WhishList";
 import { useCart } from "../context/CartContext";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 
 const WhishList = () => {
     const { whishList } = useWhishList();
@@ -31,7 +33,7 @@ const WhishList = () => {
     }
 
     return (
-        <>
+        <motion.section initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8 }}>
             <h1 className="text-[30px] mt-17 ml-45">Whish List</h1>
             { whishList.length === 0 && <h1 className="ml-45 mt-2 text-[25px]">Your whish list is currently empty.</h1> }
             <section className="flex justify-center">
@@ -50,7 +52,7 @@ const WhishList = () => {
                     }
                 </div>
             </section>
-        </>
+        </motion.section>
     )
 }
 

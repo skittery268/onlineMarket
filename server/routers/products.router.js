@@ -3,16 +3,16 @@ const { getAllProducts, createProduct, deleteProduct, editProduct } = require('.
 
 const productsRouter = express.Router();
 
-// get all products
+// Get all products
 productsRouter.get("/", getAllProducts);
 
-// create new product
+// Create new product
 productsRouter.post("/:authorId", createProduct);
 
-// delete product
+// Delete product
 productsRouter.delete("/:id", deleteProduct);
 
-// edit product
+// Edit product
 productsRouter.patch("/:id", editProduct);
 
 module.exports = productsRouter;

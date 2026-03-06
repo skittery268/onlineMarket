@@ -25,9 +25,9 @@ export const ProductsProvider = ({ children }) => {
     } 
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         if (products.length === 0) getAllProducts();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [products.length])
 
     const uploadProduct = async (formData) => {
         try {

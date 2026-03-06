@@ -1,8 +1,14 @@
-require("dotenv").config();
+const dotenv = require("dotenv");
+
+dotenv.config();
+
+// modules
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
+
+// routers
 const productsRouter = require("./routers/products.router");
 const authRouter = require("./routers/auth.router");
 const categoriRouter = require("./routers/categori.router");
@@ -13,24 +19,18 @@ const iconRouter = require("./routers/icons.router");
 
 const app = express();
 
+// middlewares
 app.use(express.json());
-
 app.use(cors({ origin: ["https://online-market-cyan.vercel.app", "http://localhost:5173"] }))
-
 app.use(morgan("dev"));
 
+// routers
 app.use("/api/products", productsRouter);
-
 app.use("/api/users", authRouter);
-
 app.use("/api/categories", categoriRouter);
-
 app.use("/api/cart", cartRouter);
-
 app.use("/api/whishlist", whishListRouter);
-
 app.use("/api/admin", adminRouter);
-
 app.use("/api/icons", iconRouter);
 
 const PORT = process.env.PORT || 3000;

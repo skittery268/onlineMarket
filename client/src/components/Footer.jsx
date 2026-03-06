@@ -1,6 +1,7 @@
+import { memo } from "react";
 import { useIcons } from "../context/IconsContext";
 
-const Footer = () => {
+const Footer = memo(() => {
     const { icons } = useIcons();
 
     return (
@@ -10,7 +11,7 @@ const Footer = () => {
                 <p className="text-[#7E7E7E] text-[15px] pl-1 pt-5 pb-5">We are a team of designers and developers who creates high quality premium Shopify themes.</p>
                 <p className="flex items-center gap-3 text-[#7E7E7E]"><img src={icons["location.png"]} className="h-4" /> No 40 Baria Sreet 133/2, NewYork, USA.</p>
                 <p className="flex items-center gap-3 text-[#7E7E7E]"><img src={icons["mobile-phone.png"]} className="h-4" /> (012) 800 456 789</p>
-                <p className="flex items-center gap-3 text-[#7E7E7E]"><img src={icons["email.png"]} className="h-4" /> support@masstechnologist</p>
+                <p className="flex items-center gap-3 text-[#7E7E7E]"><img src={icons["footerEmail.png"]} className="h-4" /> support@masstechnologist</p>
             </div>
             <div className="pt-20 pb-20">
                 <h1 className="text-[20px] font-bold">MAIN MENU</h1>
@@ -38,6 +39,6 @@ const Footer = () => {
             </div>
         </footer>
     )
-}
+})
 
 export default Footer;

@@ -1,6 +1,8 @@
 import { useCategories } from "../context/CategoriesContext";
 import { Link } from "react-router";
 import { useAuth } from "../context/AuthContext";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 
 const Categories = () => {
     const { categories } = useCategories();
@@ -9,7 +11,7 @@ const Categories = () => {
     if (categories.length === 0) return null;
 
     return (
-        <section className="py-16 px-6 bg-gray-50">
+        <motion.section initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8 }} className="py-16 px-6 bg-gray-50">
             <div className="max-w-6xl mx-auto">
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-12 text-center">Browse Categories</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -22,7 +24,7 @@ const Categories = () => {
                     ))}
                 </div>
             </div>
-        </section>
+        </motion.section>
     )
 }
 

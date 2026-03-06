@@ -1,7 +1,7 @@
 const User = require("../models/user.model");
 const bcrypt = require("bcrypt");
 
-// login user
+// Function to login user
 const login = async (req, res) => {
     try {
         const userInfo = req.body;
@@ -24,7 +24,7 @@ const login = async (req, res) => {
     }
 }
 
-// register new user
+// Function to register new user
 const register = async (req, res) => {
     try {
         const { name, email, password } = req.body;
@@ -49,7 +49,7 @@ const register = async (req, res) => {
     }
 }
 
-// edit user info
+// Function to edit user info
 const editInfo = async (req, res) => {
     try {
         const id = req.params.id;

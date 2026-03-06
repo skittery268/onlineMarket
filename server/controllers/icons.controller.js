@@ -1,5 +1,6 @@
 const Icon = require("../models/icons.model");
 
+// Function to get all icons
 const getAllIcons = async (req, res) => {
     try {
         const icons = await Icon.find();

@@ -2,6 +2,7 @@ const Category = require("../models/categories.model");
 const Product = require("../models/product.model");
 const User = require("../models/user.model");
 
+// Function to get all products from user cart
 const getUserCart = async (req, res) => {
     try {
         const id = req.params.id;
@@ -14,6 +15,7 @@ const getUserCart = async (req, res) => {
     }
 }
 
+// Function to add product in user cart
 const addToCart = async (req, res) => {
     try {
         const id = req.params.id;
@@ -31,6 +33,7 @@ const addToCart = async (req, res) => {
     }
 }
 
+// Function to delete product from user cart
 const deleteFromCart = async (req, res) => {
     try {
         const { id, productId } = req.params;
@@ -47,6 +50,7 @@ const deleteFromCart = async (req, res) => {
     }
 }
 
+// Function to change product quantity to user cart
 const changeQuantity = async (req, res) => {
     try {
         const { id, productId, quantity } = req.params;
@@ -63,6 +67,7 @@ const changeQuantity = async (req, res) => {
     }
 }
 
+// Function to buy all products in cart
 const clearCart = async (req, res) => {
     try {
         const { id } = req.params;

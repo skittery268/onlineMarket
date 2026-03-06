@@ -1,7 +1,8 @@
 import { Link } from "react-router";
 import { useAuth } from "../context/AuthContext"
+import { memo } from "react";
 
-const Welcome = () => {
+const Welcome = memo(() => {
     const { user } = useAuth();
 
     return (
@@ -47,6 +48,6 @@ const Welcome = () => {
             </div>
         </section>
     )
-}
+})
 
 export default Welcome;

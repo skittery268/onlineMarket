@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useCategories } from "../context/CategoriesContext";
 import { useProducts } from "../context/ProductsContext";
 import { useForm } from "../hooks/useForm";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 
 const UploadProduct = () => {
     const { categories, getCategories } = useCategories();
@@ -18,10 +20,10 @@ const UploadProduct = () => {
 
     useEffect(() => {
         getCategories();
-    }, [getCategories, uploadProduct])
+    }, [getCategories])
 
     return (
-        <section className="relative flex justify-center items-center h-200">
+        <motion.section initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8 }} className="relative flex justify-center items-center h-200">
             <h1 className="absolute top-5 text-[40px]">Upload Product</h1>
             <form className="relative flex justify-center items-center flex-col w-200 h-150 shadow-lg rounded-[10px]" onSubmit={(e) => { handleSubmit(e, uploadProduct); resetForm() }}>
                 <label className="flex flex-col absolute top-5 left-5">
@@ -63,7 +65,7 @@ const UploadProduct = () => {
                 </div>
                 <button type="submit" className="absolute bottom-5 left-5 w-190 h-15 bg-gray-800 rounded-full cursor-pointer hover:bg-gray-900 text-white">Submit</button>
             </form>
-        </section>
+        </motion.section>
     )
 }
 

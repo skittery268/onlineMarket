@@ -23,9 +23,9 @@ export const IconsProvider = ({ children }) => {
     }
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         if (Object.keys(icons).length === 0) getAllIcons();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [icons])
 
     return (
         <IconsContext.Provider value={{ icons }}>

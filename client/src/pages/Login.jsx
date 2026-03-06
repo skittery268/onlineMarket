@@ -2,6 +2,8 @@ import { Link } from "react-router";
 import { useAuth } from "../context/AuthContext";
 import { useForm } from "../hooks/useForm";
 import { useIcons } from "../context/IconsContext";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 
 const Login = () => {
     const [formData, handleChange, handleSubmit, resetForm] = useForm({
@@ -19,7 +21,7 @@ const Login = () => {
     }
 
     return (
-        <section className="flex justify-center items-center h-[90vh]">
+        <motion.section initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8 }} className="flex justify-center items-center h-[90vh]">
             <form onSubmit={(e) => loginUser(e)} className="w-90 h-100 bg-[white] border rounded-[10px] relative border-[#cfcfcf]">
                 <h1 className="absolute left-6 top-4 text-2xl">Login</h1>
                 <img src={icons["email.png"]} className="h-6 absolute top-25 left-5" />
@@ -31,7 +33,7 @@ const Login = () => {
                 <button type="submit" className="absolute top-70 bg-[#4A99F8] w-80 left-5 h-13 text-white rounded-[5px] cursor-pointer hover:bg-[#2688ff]">Login Now</button>
                 <p className="absolute top-88 text-[13px] left-19">Don't have an account? <Link to={"/register"} className="text-blue-500">Signup now</Link></p>
             </form>
-        </section>
+        </motion.section>
     )
 }
 

@@ -1,12 +1,14 @@
 import { useAdmin } from "../context/AdminContext";
 import { useIcons } from "../context/IconsContext";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 
 const AdminPanel = () => {
     const { users, deleteUser, changeRole } = useAdmin();
     const { icons } = useIcons();
 
     return (
-        <>
+        <motion.section initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8 }}>
             <h1 className="text-[30px] mt-17 ml-30">Admin Panel</h1>
             <table className="border ml-30 mt-5 border-gray-300">
                 <thead>
@@ -36,7 +38,7 @@ const AdminPanel = () => {
                     }
                 </tbody>
             </table>
-        </>
+        </motion.section>
     )
 }
 

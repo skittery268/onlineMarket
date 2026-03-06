@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useState } from "react";
 
 const CategoriesContext = createContext();
 
@@ -10,7 +10,7 @@ const api_url = "https://onlinemarket-o6s5.onrender.com/api/categories"
 export const CategoriesProvider = ({ children }) => {
     const [categories, setCategories] = useState([]);
 
-    const getCategories = async () => {
+    const getCategories = useCallback(async () => {
         try {
             const res = await fetch(`${api_url}`);
 
@@ -22,12 +22,11 @@ export const CategoriesProvider = ({ children }) => {
         } catch (err) {
             console.log(err);
         }
-    }
+    }, [])
 
     useEffect(() => {
         if (categories.length === 0) getCategories();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [categories.length, getCategories]);
 
     return (
         <CategoriesContext.Provider value={{ categories, setCategories, getCategories }}>

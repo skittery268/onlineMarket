@@ -1,6 +1,6 @@
-const Category = require("../models/categories.model");
 const User = require("../models/user.model");
 
+// Function to get all users
 const getAllUsers = async (req, res) => {
     try {
         const user = req.body;
@@ -17,6 +17,7 @@ const getAllUsers = async (req, res) => {
     }
 }
 
+// Function to delete user
 const deleteUser = async (req, res) => {
     try {
         const user = req.body;
@@ -36,6 +37,7 @@ const deleteUser = async (req, res) => {
     }
 }
 
+// Function to change role user (admin / user)
 const changeRole = async (req, res) => {
     try {
         const { id, userId } = req.params;
