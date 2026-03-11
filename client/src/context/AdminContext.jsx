@@ -14,13 +14,7 @@ export const AdminProvider = ({ children }) => {
 
     const getAllUsers = useCallback(async () => {
         try {
-            const res = await fetch(`${api_url}/users`, {
-                method: "POST",
-                headers: {
-                    "content-type": "application/json",
-                },
-                body: JSON.stringify(user)
-            });
+            const res = await fetch(`${api_url}/users/${user.role}`);
 
             const data = await res.json();
 

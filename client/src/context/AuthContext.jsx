@@ -81,7 +81,7 @@ export const AuthProvider = ({ children }) => {
     const editInfo = async (formData) => {
         try {
             const res = await fetch(`${api_url}/edit/${formData.id}`, {
-                method: "POST",
+                method: "PATCH",
                 headers: {
                     "content-type": "application/json"
                 },
