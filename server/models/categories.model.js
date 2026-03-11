@@ -1,5 +1,7 @@
+// Modules
 const mongoose = require("mongoose");
 
+// Schema for data base collection
 const categorySchema = new mongoose.Schema({
     categori: {
         type: String,
@@ -15,6 +17,7 @@ const categorySchema = new mongoose.Schema({
     }
 })
 
+// Create category model for communicate with collection
 const Category = mongoose.model("category", categorySchema);
 
 module.exports = Category;

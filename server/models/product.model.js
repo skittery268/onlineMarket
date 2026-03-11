@@ -1,5 +1,7 @@
+// Modules
 const mongoose = require("mongoose");
 
+// Schema for data base collection
 const productSchema = new mongoose.Schema({
     authorId: {
         type: String,
@@ -35,6 +37,7 @@ const productSchema = new mongoose.Schema({
     }
 })
 
+// Create product model for communicate with collection
 const Product = mongoose.model("products", productSchema);
 
 module.exports = Product;

@@ -1,72 +1,68 @@
+// Models
 const Category = require("../models/categories.model");
 const Product = require("../models/product.model");
 
-// Function to get all products
-const getAllProducts = async (req, res) => {
-    try {
-        const products = await Product.find();
+// Utils
+const AppError = require("../utils/AppError");
+const CatchAsync = require("../utils/CatchAsync");
 
-        res.status(200).json(products);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-}
+// Function to get all products
+const getAllProducts = CatchAsync(async (req, res, next) => {
+    const products = await Product.find();
+
+    res.status(200).json(products);
+})
 
 // Function to create new product
-const createProduct = async (req, res) => {
-    try {
-        const { title, description, img, category, price, productCount } = req.body;
-        const authorId = req.params.authorId;
+const createProduct = CatchAsync(async (req, res, next) => {
+    const { title, description, img, category, price, productCount } = req.body;
+    const authorId = req.params.authorId;
     
-        if (!title || !description || !img || !category || !price || !productCount) {
-            return res.status(400).json({ message: "Product title, description, image, category, price and product count are required!" });
-        }
-
-        const newProduct = await Product.create({ authorId, title, description, img, category, price, productCount });
-
-        await Category.updateOne({ categori: category }, { $inc: { productCount: +1 } });
-
-        res.status(201).json(newProduct);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-        console.log(err)
+    if (!title || !description || !img || !category || !price || !productCount) {
+        return next(new AppError("Product title, description, image, category, price and product count are required!", 400));
     }
-}
+
+    const newProduct = await Product.create({ authorId, title, description, img, category, price, productCount });
+
+    await Category.updateOne({ categori: category }, { $inc: { productCount: +1 } });
+
+    res.status(201).json(newProduct);
+})
 
 // Function to delete product
-const deleteProduct = async (req, res) => {
-    try {
-        const id = req.params.id;
+const deleteProduct = CatchAsync(async (req, res, next) => {
+    const id = req.params.id;
 
-        const prod = await Product.findById(id);
+    const prod = await Product.findById(id);
 
-        await Category.updateOne({ categori: prod.category }, { $inc: { productCount: -1 } });
+    await Category.updateOne({ categori: prod.category }, { $inc: { productCount: -1 } });
 
-        await Product.deleteOne({ _id: id });
-
-        const products = await Product.find();
-
-        res.status(200).json(products);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-}
-
-// Function to edit product
-const editProduct = async (req, res) => {
-    const { title, description, img, category, price, productCount } = req.body;
-    const id = parseInt(req.params.id);
-
-    if (title) await Product.updateOne({ _id: id }, { $set: { title: title } });
-    if (description) await Product.updateOne({ _id: id }, { $set: { description: description } });
-    if (img) await Product.updateOne({ _id: id }, { $set: { img: img } });
-    if (category) await Product.updateOne({ _id: id }, { $set: { category: category } });
-    if (price) await Product.updateOne({ _id: id }, { $set: { price: price } });
-    if (productCount) await Product.updateOne({ _id: id }, { $set: { productCount: productCount } });
+    await Product.deleteOne({ _id: id });
 
     const products = await Product.find();
 
     res.status(200).json(products);
-}
+})
+
+// Function to edit product
+const editProduct = CatchAsync(async (req, res, next) => {
+    const { title, description, img, category, price, productCount } = req.body;
+    const { id } = req.params;
+
+    const product = await Product.findById(id);
+
+    if (title) product.title = title;
+    if (description) product.description = description;
+    if (img) product.img = img;
+    if (category) product.category = category;
+    if (price) product.price = price;
+    if (productCount) product.productCount = productCount;
+
+    await product.save();
+
+    const products = await Product.find();
+
+    res.status(200).json(products);
+})
 
 module.exports = { getAllProducts, createProduct, deleteProduct, editProduct };

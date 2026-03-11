@@ -1,52 +1,43 @@
+// Models
 const User = require("../models/user.model");
 
+// Utils
+const CatchAsync = require("../utils/CatchAsync");
+
 // Function to get user whish list
-const getWhishList = async (req, res) => {
-    try {
-        const { id } = req.params;
+const getWhishList = CatchAsync(async (req, res, next) => {
+    const { id } = req.params;
 
-        const user = await User.findById(id);
+    const user = await User.findById(id);
 
-        res.status(200).json(user.whishList);
-    } catch (err) {
-        res.status(500).json(err.message);
-    }
-}
+    res.status(200).json(user.whishList);
+})
 
 // Function to add new product in user whish list
-const addToWhishList = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const product = req.body;
+const addToWhishList = CatchAsync(async (req, res, next) => {
+    const { id } = req.params;
+    const product = req.body;
 
-        const user = await User.findById(id);
+    const user = await User.findById(id);
 
-        user.whishList.push(product);
+    user.whishList.push(product);
 
-        await user.save();
+    await user.save();
 
-        res.status(200).json(user.whishList);
-    } catch (err) {
-        res.status(500).json(err.message);
-    }
-}
+    res.status(200).json(user.whishList);
+})
 
 // Function to delete product from user whish list
-const deleteFromWhishList = async (req, res) => {
-    try {
-        const { id, productId } = req.params;
+const deleteFromWhishList = CatchAsync(async (req, res, next) => {
+    const { id, productId } = req.params;
 
-        const user = await User.findById(id);
+    const user = await User.findById(id);
 
-        user.whishList = user.whishList.filter(p => p._id !== productId);
+    user.whishList = user.whishList.filter(p => p._id !== productId);
 
-        await user.save();
+    await user.save();
 
-        res.status(200).json(user.whishList);
-    } catch (err) {
-        res.status(500).json(err.message);
-        console.log(err);
-    }
-}
+    res.status(200).json(user.whishList);
+})
 
 module.exports = { getWhishList, addToWhishList, deleteFromWhishList };

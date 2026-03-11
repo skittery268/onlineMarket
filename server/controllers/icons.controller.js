@@ -1,14 +1,14 @@
+// Models
 const Icon = require("../models/icons.model");
 
-// Function to get all icons
-const getAllIcons = async (req, res) => {
-    try {
-        const icons = await Icon.find();
+// Utils
+const CatchAsync = require("../utils/CatchAsync");
 
-        res.status(200).json(icons);
-    } catch (err) {
-        res.status(500).json(err.message);
-    }
-}
+// Function to get all icons
+const getAllIcons = CatchAsync(async (req, res, next) => {
+    const icons = await Icon.find();
+
+    res.status(200).json(icons);
+})
 
 module.exports = getAllIcons;

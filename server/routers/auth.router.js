@@ -10,6 +10,6 @@ authRouter.post("/login", login);
 authRouter.post("/register", register);
 
 // Edit user info
-authRouter.post("/edit/:id", editInfo)
+authRouter.patch("/edit/:id", editInfo)
 
 module.exports = authRouter;

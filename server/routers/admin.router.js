@@ -1,10 +1,10 @@
 const express = require("express");
-const { getAllUsers, deleteUser, createCategory, changeRole } = require("../controllers/admin.controller");
+const { getAllUsers, deleteUser, changeRole } = require("../controllers/admin.controller");
 
 const adminRouter = express.Router();
 
 // Router to get all users
-adminRouter.post("/users", getAllUsers);
+adminRouter.get("/users/:role", getAllUsers);
 
 // Router to delete user
 adminRouter.delete("/deleteuser/:id", deleteUser);
