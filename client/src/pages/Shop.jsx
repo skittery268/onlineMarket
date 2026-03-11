@@ -12,11 +12,11 @@ const Shop = () => {
             <h1 className="text-[40px] mt-12.5">CATEGORIES</h1>
             <div className="w-[82%] flex justify-center items-center flex-wrap gap-10 mt-10">
                 {
-                    categories.map(categori => {
+                    categories.map(category => {
                         return (
-                            <div key={categori._id} onClick={() => navigate(`/products/${categori.categori}`)} className="w-80 shadow hover:shadow-xl duration-300 rounded-[5px] h-92.5 cursor-pointer">
-                                <img src={categori.img} alt={categori.categori} className="w-full h-[80%]" />
-                                <p className="text-center h-[20%] text-2xl mt-2">{categori.categori} ({categori.productCount} items)</p>
+                            <div key={category._id} onClick={() => navigate(`/products/${category.category}`)} className="w-80 shadow hover:shadow-xl duration-300 rounded-[5px] h-92.5 cursor-pointer">
+                                <img src={category.img} alt={category.category} className="w-full h-[80%]" />
+                                <p className="text-center h-[20%] text-2xl mt-2">{category.category} ({category.productCount} items)</p>
                             </div>
                         )
                     })

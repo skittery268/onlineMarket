@@ -3,17 +3,17 @@ const mongoose = require("mongoose");
 
 // Schema for data base collection
 const categorySchema = new mongoose.Schema({
-    categori: {
+    category: {
         type: String,
-        required: true
+        required: [true, "Category is required"]
     },
     img: {
         type: String,
-        required: true
+        required: [true, "Image is required"]
     },
     productCount: {
         type: Number,
-        required: true
+        required: [true, "Product count is required"]
     }
 })
 

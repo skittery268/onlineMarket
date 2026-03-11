@@ -56,8 +56,8 @@ const UploadProduct = () => {
                         categories.map(category => {
                             return (
                                 <label key={category._id} className="flex items-center space-x-2 cursor-pointer">
-                                    <input type="radio" name="category" value={category.categori} checked={formData.category === category.categori} onChange={handleChange} className="form-radio h-4 w-4" required />
-                                    <span className="capitalize select-none">{category.categori}</span>
+                                    <input type="radio" name="category" value={category.category} checked={formData.category === category.category} onChange={handleChange} className="form-radio h-4 w-4" required />
+                                    <span className="capitalize select-none">{category.category}</span>
                                 </label>
                             )
                         })

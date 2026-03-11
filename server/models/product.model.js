@@ -5,31 +5,31 @@ const mongoose = require("mongoose");
 const productSchema = new mongoose.Schema({
     authorId: {
         type: String,
-        required: true
+        required: [true, "Author Id is required"]
     },
     title: {
         type: String,
-        required: true
+        required: [true, "Title is required"]
     },
     description: {
         type: String,
-        required: true
+        required: [true, "Description is required"]
     },
     img: {
         type: String,
-        required: true
+        required: [true, "Image is required"]
     },
     category: {
         type: String,
-        required: true
+        required: [true, "Product Category is required"]
     },
     price: {
         type: Number,
-        required: true
+        required: [true, "Price is required"]
     },
     productCount: {
         type: Number,
-        required: true
+        required: [true, "Product count is required"]
     },
     quantity: {
         type: Number,

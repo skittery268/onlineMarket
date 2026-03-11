@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 
 const Products = () => {
     const { categories, getCategories } = useCategories();
-    const { categori } = useParams();
+    const { category } = useParams();
     const { products, deleteProduct } = useProducts();
     const { addToCart, cart, setCart, changeQuantity } = useCart();
     const { user } = useAuth();
@@ -42,19 +42,19 @@ const Products = () => {
     }
 
     useEffect(() => {
-        setFilteredProducts(products.filter(p => p.category === categori));
+        setFilteredProducts(products.filter(p => p.category === category));
         getCategories();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [products, categori])
+    }, [products, category])
 
     return (
         <motion.section initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8 }} className="flex justify-center  mt-30">
             <div className="flex justify-center items-start flex-col h-60 w-75 rounded-[10px] bg-[#F8F8F8]">
                 <h1 className="ml-5 mb-5 text-[22px]">Categories</h1>
                 {
-                    categories.map(categori => {
+                    categories.map(category => {
                         return (
-                            <button key={categori._id} className="ml-5 mb-2 text-gray-400 hover:text-blue-400 duration-300 cursor-pointer" onClick={() => navigate(`/products/${categori.categori}`)}>{categori.categori}</button>
+                            <button key={category._id} className="ml-5 mb-2 text-gray-400 hover:text-blue-400 duration-300 cursor-pointer" onClick={() => navigate(`/products/${category.category}`)}>{category.category}</button>
                         )
                     })
                 }
