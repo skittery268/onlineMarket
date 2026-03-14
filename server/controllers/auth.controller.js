@@ -15,7 +15,7 @@ const login = CatchAsync(async (req, res, next) => {
         return next(new AppError("Password or email incorrect!", 400))
     }
 
-    const isCorrect = user.comparePassword(password);
+    const isCorrect = await user.comparePassword(password);
 
     if (!isCorrect) {
         return next(new AppError("Password or email incorrect!", 400))

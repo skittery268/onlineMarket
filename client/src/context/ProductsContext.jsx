@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useAuth } from "./AuthContext";
+import { toast } from "react-toastify";
 
 const ProductsContext = createContext();
 
@@ -41,9 +42,15 @@ export const ProductsProvider = ({ children }) => {
 
             const data = await res.json();
 
+            if (!res.ok) {
+                toast.error(data.message);
+                return;
+            }
+
             products.push(data);
+            toast.success("Product uploaded successfully!");
         } catch (err) {
-            console.log(err);
+            toast.error(err.message);
         }
     }
 
@@ -53,16 +60,17 @@ export const ProductsProvider = ({ children }) => {
                 method: "DELETE"
             })
 
+            const data = await res.json();
+
             if (!res.ok) {
-                const data = await res.json();
-                console.log(data);
+                toast.error(data.message);
                 return;
             }
 
-            const data = await res.json();
             setProducts(data);
+            toast.success("Product deleted successfully!");
         } catch (err) {
-            console.log(err);
+            toast.error(err.message);
         }
     }
 

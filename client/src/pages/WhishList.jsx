@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { useWhishList } from "../context/WhishList";
+import { useWhishList } from "../context/WhishListContext";
 import { useCart } from "../context/CartContext";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";

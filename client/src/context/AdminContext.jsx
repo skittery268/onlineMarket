@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { useAuth } from "./AuthContext";
+import { toast } from 'react-toastify';
 
 const AdminContext = createContext();
 
@@ -13,6 +14,7 @@ export const AdminProvider = ({ children }) => {
     const { user, loading } = useAuth();
 
     const getAllUsers = useCallback(async () => {
+        if (!user) return;
         try {
             const res = await fetch(`${api_url}/users/${user.role}`);
 
@@ -20,16 +22,18 @@ export const AdminProvider = ({ children }) => {
 
             setUsers(data);
         } catch (err) {
-            console.log(err);
+            toast.error(err.message);
         }
     }, [user])
 
     useEffect(() => {
-        if (!loading) getAllUsers();
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        if (!loading && user) getAllUsers();
 
-    }, [getAllUsers, loading])
+    }, [getAllUsers, loading, user])
 
     const deleteUser = async (id) => {
+        if (!user) return;
         try {
             const res = await fetch(`${api_url}/deleteuser/${id}`, {
                 method: "DELETE",
@@ -41,13 +45,20 @@ export const AdminProvider = ({ children }) => {
 
             const data = await res.json();
 
+            if (!res.ok) {
+                toast.error(data.message);
+                return;
+            }
+
             setUsers(data);
+            toast.success("User deleted successfully!");
         } catch (err) {
-            console.log(err);
+            toast.error(err.message);
         }
     }
 
     const changeRole = async (id, role) => {
+        if (!user) return;
         try {
             const res = await fetch(`${api_url}/changerole/${id}/${user._id}`, {
                 method: "PATCH",
@@ -60,12 +71,14 @@ export const AdminProvider = ({ children }) => {
             const data = await res.json();
 
             if (!res.ok) {
-                throw new Error("Failed to change role");
+                toast.error(data.message);
+                return;
             }
 
             setUsers(data);
+            toast.success("User role changed successfully!");
         } catch (err) {
-            console.log(err);
+            toast.error(err.message);
         }
     }
 

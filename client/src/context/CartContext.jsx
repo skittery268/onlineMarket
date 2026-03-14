@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { createContext } from "react";
 import { useAuth } from "./AuthContext";
+import { toast } from "react-toastify";
 
 const CartContext = createContext();
 
@@ -15,6 +16,7 @@ export const CartProvider = ({ children }) => {
     const { loading, user } = useAuth();
 
     const getCart = async () => {
+        if (!user) return;
         try {
             const res = await fetch(`${api_url}/${user._id}`);
 
@@ -27,11 +29,12 @@ export const CartProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        if (!loading && cart.length === 0) getCart()
+        if (!loading && user && cart.length === 0) getCart()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [loading])
+    }, [loading, user])
 
     const addToCart = async (product) => {
+        if (!user) return;
         try {
             const res = await fetch(`${api_url}/${user._id}`, {
                 method: "POST",
@@ -43,13 +46,20 @@ export const CartProvider = ({ children }) => {
 
             const data = await res.json();
 
+            if (!res.ok) {
+                toast.error(data.message);
+                return;
+            }
+
             setCart(data);
+            toast.success("Product added to cart!");
         } catch (err) {
-            console.log(err);
+            toast.error(err.message);
         }
     }
 
     const deleteFromCart = async (productId) => {
+        if (!user) return;
         try {
             const res = await fetch(`${api_url}/${user._id}/${productId}`, {
                 method: "DELETE"
@@ -57,13 +67,20 @@ export const CartProvider = ({ children }) => {
 
             const data = await res.json();
 
+            if (!res.ok) {
+                toast.error(data.message);
+                return;
+            }
+
             setCart(data);
+            toast.success("Product deleted from cart!");
         } catch (err) {
-            console.log(err);
+            toast.error(err.message);
         }
     }
 
     const changeQuantity = async (productId, quantity) => {
+        if (!user) return;
         try {
             const res = await fetch(`${api_url}/${user._id}/${productId}/${quantity}`, {
                 method: "PATCH"
@@ -78,6 +95,7 @@ export const CartProvider = ({ children }) => {
     }
 
     const clearCart = async () => {
+        if (!user) return;
         try {
             const res = await fetch(`${api_url}/${user._id}`, {
                 method: "DELETE"
@@ -85,10 +103,16 @@ export const CartProvider = ({ children }) => {
 
             const data = await res.json();
 
+            if (!res.ok) {
+                toast.error(data.message);
+                return;
+            }
+
             setCart(data);
             localStorage.removeItem("product");
+            toast.success("Products paid for!");
         } catch (err) {
-            console.log(err);
+            toast.error(err.message);
         }
     }
 

@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useAuth } from "./AuthContext";
+import { toast } from "react-toastify";
 
 const WhishListContext = createContext();
 
@@ -13,6 +14,7 @@ export const WhishListProvider = ({ children }) => {
     const { loading, user } = useAuth();
 
     const getWhishList = async () => {
+        if (!user) return;
         try {
             const res = await fetch(`${api_url}/${user._id}`);
 
@@ -25,11 +27,12 @@ export const WhishListProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        if (!loading && whishList.length === 0) getWhishList();
+        if (!loading && user && whishList.length === 0) getWhishList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loading, user])
 
     const addToWhishList = async (product) => {
+        if (!user) return;
         try {
             const res = await fetch(`${api_url}/${user._id}`, {
                 method: "POST",
@@ -41,13 +44,20 @@ export const WhishListProvider = ({ children }) => {
 
             const data = await res.json();
 
+            if (!res.ok) {
+                toast.error(data.message);
+                return;
+            }
+
             setWhishList(data);
+            toast.success("Product added to wish list!");
         } catch (err) {
-            console.log(err);
+            toast.error(err.message);
         }
     }
 
     const deleteFromWhishList = async (productId) => {
+        if (!user) return;
         try {
             const res = await fetch(`${api_url}/${user._id}/${productId}`, {
                 method: "DELETE"
@@ -55,9 +65,15 @@ export const WhishListProvider = ({ children }) => {
 
             const data = await res.json();
 
+            if (!res.ok) {
+                toast.error(data.message);
+                return;
+            }
+
             setWhishList(data);
+            toast.success("Product deleted from wish list!");
         } catch (err) {
-            console.log(err);
+            toast.error(err.message);
         }
     }
 

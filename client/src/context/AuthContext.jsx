@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useContext, createContext } from "react";
 import { useNavigate } from "react-router";
+import { toast } from 'react-toastify';
 
 const AuthContext = createContext();
 
@@ -37,13 +38,14 @@ export const AuthProvider = ({ children }) => {
             const data = await res.json();
 
             if (!res.ok) {
-                alert(data.message);
+                toast.error(data.message);
                 return;
             }
 
             navigate("/login");
+            toast.success("User registered successfully!");
         } catch (err) {
-            console.log(err);
+            toast.error(err.message);
         }
     }
 
@@ -60,15 +62,16 @@ export const AuthProvider = ({ children }) => {
             const data = await res.json();
 
             if (!res.ok) {
-                alert(data.message);
+                toast.error(data.message);
                 return;
             }
 
             setUser(data);
             if (formData.remember === "on") localStorage.setItem("user", JSON.stringify(data));
             navigate("/profile");
+            toast.success("Login successful");
         } catch (err) {
-            console.log(err);
+            toast.error(err.message);
         }
     }
 
@@ -76,6 +79,7 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
         localStorage.removeItem("user");
         navigate("/")
+        toast.success("Logout successful!");
     }
 
     const editInfo = async (formData) => {
@@ -90,10 +94,16 @@ export const AuthProvider = ({ children }) => {
 
             const data = await res.json();
 
+            if (!res.ok) {
+                toast.error(data.message);
+                return;
+            }
+
             setUser(data);
             localStorage.setItem("user", JSON.stringify(data));
+            toast.success("User info edited successfully!");
         } catch (err) {
-            console.log(err);
+            toast.error(err.message);
         }
     }
 

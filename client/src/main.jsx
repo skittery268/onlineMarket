@@ -6,9 +6,10 @@ import "./index.css";
 import { ProductsProvider } from './context/ProductsContext.jsx'
 import { CategoriesProvider } from './context/CategoriesContext.jsx'
 import { CartProvider } from './context/CartContext.jsx'
-import { WhishListProvider } from './context/WhishList.jsx'
+import { WhishListProvider } from './context/WhishListContext.jsx'
 import { AdminProvider } from './context/AdminContext.jsx';
 import { IconsProvider } from './context/IconsContext.jsx';
+import { ToastContainer } from 'react-toastify';
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -20,6 +21,7 @@ createRoot(document.getElementById('root')).render(
               <AdminProvider>
                 <IconsProvider>
                   <App />
+                  <ToastContainer />
                 </IconsProvider>
               </AdminProvider>
             </WhishListProvider>

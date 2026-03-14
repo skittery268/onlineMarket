@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { useProducts } from "../context/ProductsContext";
 import { useCart } from "../context/CartContext";
-import { useWhishList } from "../context/WhishList";
+import { useWhishList } from "../context/WhishListContext";
 import { useAuth } from "../context/AuthContext";
 import { useIcons } from "../context/IconsContext";
 // eslint-disable-next-line no-unused-vars
